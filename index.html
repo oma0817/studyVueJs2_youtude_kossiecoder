@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vue 기초 익히기</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{ person.name }} {{ person.age }}<br />{{ nextYear('안녕하세요') }}<br />
+      <input :type="type" v-bind:value="inputData" /><br />
+      <a :href="getKossieCoderLik('kossiecoder')">코지코더 유튜브 채널</a>
+    </div>
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            person: {
+              name: "홍길동",
+              age: 34,
+            },
+            inputData: "hello",
+            type: "text",
+            link: "https://www.youtube.com/",
+          };
+        },
+        methods: {
+          getKossieCoderLik(channel) {
+            return this.link + channel;
+          },
+          nextYear(greeting) {
+            return (
+              greeting +
+              "! " +
+              this.person.name +
+              " 는 내년에 " +
+              (this.person.age + 1) +
+              "살 입니다"
+            );
+          },
+          otherMethod: function () {
+            this.nextYear();
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
